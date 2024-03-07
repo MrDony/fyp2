@@ -1,0 +1,28 @@
+<app-nav-bar></app-nav-bar>
+<section class="page">
+    
+    <h1>Home</h1>
+    <h2>Welcome {{username_}}!</h2>
+    <p>Resume your journey with ease. What would you like to know today?</p>
+    
+    <section class="chats">
+        <p *ngIf="chatsList.length == 0">Seems like you have not started a chat yet. Click <a routerLink="/chatbot" [state]="{ chatData: { chatID: null, createNewChat: true } }">here</a> to start a chat now!</p>
+        <button class="create" *ngIf="chatsList.length!=0" routerLink="/chatbot" [state]="{ chatData: { chatID: null, createNewChat: true } }">Create New Chat Session</button>
+        <table>
+            <thead>
+                <th class="ta-l">Prompt</th>
+                <th class="">Date</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let chat of chatsList" routerLink="/chatbot" [state]="{ chatData: { chatID: chat.chat_id, createNewChat: false } }" style="border-bottom: solid #888 1px;">
+                    <td class="prompt" *ngIf="chat.final_prompt_id==null">You haven't said anything yet</td>
+                    <td class="prompt" *ngIf="chat.final_prompt_id!=null">{{chat.prompt_text}}</td>
+                    <td class="date">{{chat.starting_date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    
+    
+</section>

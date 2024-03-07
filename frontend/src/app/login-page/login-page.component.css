@@ -1,0 +1,120 @@
+.page-body{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.middle-box{
+    display: flex;
+    background-color: var(--primary-color);
+    width: 75%;
+    height: 75%;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 0px 10px 1px var(--primary-color-dark);
+    overflow: hidden;
+    border-radius: 50px;
+}
+.login-credentials-form{
+    text-align: center; /* Horizontal centering */
+    display: flex; /* Vertical centering */
+    align-items: center; /* Vertical centering */
+    width: 50%;
+    height: 100%;
+    text-align: -webkit-center;
+}
+.login-credentials-form p{
+    color: white;
+}
+.form-body{
+    width: 100%;
+}
+
+.divider{
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    margin: 20px;
+}
+.divider:before, 
+.divider:after { 
+    content: "";
+    margin: 10px;
+    flex: 1 1;
+    border: 1px solid white;
+    height: 0px;
+} 
+
+
+.rotating-texts .divider::before,.rotating-texts .divider::after{
+    border-color: black;
+}
+
+
+.rotating-texts{
+    background-color: white;
+    color: black;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+
+}
+.rotating-texts .form-body{
+    padding: 5%;
+}
+.rotate .title{
+    font-size: 60px;
+}
+.rotating{
+    color: #555;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.rotate{
+    text-align: left;
+    width: auto;
+}
+
+
+
+.fa {
+    padding: 10px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  
+
+  
+  /* Set a specific color for each brand */
+  
+  /* Facebook */
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+
+  .fa-google {
+    background: #dd4b39;
+    color: white;
+  }
+
+  .login-social-button{
+    background-color: whitesmoke;
+    font-size: 16px;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    color: #555;
+    align-items: center;
+    width: 50%;
+    padding: 5px 10px;
+    margin: 10px;
+  }

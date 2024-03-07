@@ -1,0 +1,54 @@
+<div class="page-body">
+    <div class="middle-box">
+        <div class="col login-credentials-form">
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <div class="form-body">
+                <p class="title">Login</p>
+                <p class="sub-title divider">Using Credentials</p>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="input-field">
+                        <p class="input-field-label" for="username">
+                            Username
+                        </p>
+                        <input type="text" id="username" formControlName="username" class="form-control" required />
+                    </div>
+                    <div class="input-field">
+                        <p class="input-field-label" for="password">
+                            Password
+                        </p>
+                        <input type="password" id="password" formControlName="password" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+                <p class="sub-title divider">Using Google or Facebook</p>
+                <button class="login-social-button" style="display: flex;">
+                    <a class="fa fa-facebook"></a>
+                    Facebook
+                </button>
+                <button class="login-social-button" style="display: flex;">
+                    <a class="fa fa-google"></a>
+                    Google
+                </button>
+                <p style="margin: 20px 0px;">
+                    Don't have an account?
+                    <a style="color: azure;" routerLink="/sign-up">SignUp</a>
+                    now!
+                </p>
+            </div>
+        </div>
+        <div class="rotating-texts">
+            <div class="form-body">
+                <img style="width: 100%;" src="../../assets/Logo.png">
+                <div class="divider" style="width: auto; border-color: black;">Welcome</div>
+                <div class="rotate">
+                    <p class="title">Got</p>
+                    <p class="rotating">{{rotating_questions[roitating_question_index]}}</p>
+                </div>
+                <p>We've got you covered! Our chatbot allows you to effortlessly work throught the requirements of the
+                    SECP, understand complex legal terms, and meet the requirements set by fegral law.</p>
+            </div>
+        </div>
+    </div>
+</div>

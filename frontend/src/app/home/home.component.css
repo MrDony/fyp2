@@ -1,0 +1,58 @@
+.chats{
+    margin: 20px;
+    padding: 20px;
+    width: auto;
+    display: block;
+    border: 1px solid #777;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.chats table{
+    width: -webkit-fill-available;
+}
+
+table td{
+    padding: 20px;
+}
+th{
+    padding: 20px;
+    font-size: 30px;
+}
+tr{
+    background-color: #DDD;
+    transition-duration: 0.1ms;
+    border-radius: 20px;
+    overflow: hidden;
+    border-bottom: #BBB solid 0.5px;
+}
+tr:nth-last-of-type(odd){
+    background-color: #EEE;
+}
+
+tr:hover{
+    background-color: var(--primary-color-light);
+    color: white;
+    cursor: pointer;
+}
+
+.create{
+    background-color: #2A2;
+    color: white;
+}
+
+.create:hover{
+    background-color: #181;
+}
+
+.prompt{
+    width: 70%;
+    text-align: left;
+    overflow: hidden;
+}
+.date{
+    width: 20%;
+}
+.ta-l{
+    text-align: left;
+}

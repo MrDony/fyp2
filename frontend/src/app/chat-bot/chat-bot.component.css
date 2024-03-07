@@ -1,0 +1,131 @@
+
+.recent-chat{
+    position: relative; /* Ensure relative positioning for the parent element */
+    font-size: 14px;
+    width: 10%;
+    margin: 0px 5px;
+    padding: 5px;
+    border: 1px solid white;
+    align-self: center;
+    border-radius: 10px;
+    overflow: hidden;
+    text-wrap: nowrap;
+    cursor: pointer;
+}
+.recent-chat:hover{
+    width: 12%;
+}
+
+.recent-chat::before {
+    content: ''; /* Add content to the pseudo-element (empty content) */
+    position: absolute; /* Position the pseudo-element absolutely within the parent */
+    top: 0;
+    right: 0; /* Place the pseudo-element on the right side */
+    width: 40px; /* Adjust the width of the shadow element as needed */
+    height: 100%; /* Make the shadow element cover the full height of the parent */
+    background: linear-gradient(to left, #e3e3e3aa, transparent); 
+    /* Use a linear gradient for the shadow effect (black to transparent) */
+    z-index: 1; /* Ensure the shadow element is above the text (increase if necessary) */
+}
+
+.fa-angle-down{
+    cursor: pointer;
+}
+.fa-angle-down:hover{
+    background-color: #FFFFFF33;
+    padding: 5px;
+}
+.fa-angle-down:active{
+    background-color: #FFFFFFAA;
+}
+
+.right button{
+    margin: 0px 5px;
+}
+
+
+.chat-body{
+    display: block;
+    position: relative;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    height: -webkit-fill-available;
+}
+
+
+.prompt-input-container{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: -webkit-fill-available;
+    align-items: center;
+}
+.prompt-input-container i{
+    font-size: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    transform: rotate(-90deg);
+    cursor: pointer;
+    color: white;
+    background-color: var(--primary-color);
+    margin: 10px;
+    border: 1px solid black;
+}
+.chat-input-field{
+    width: 50%;
+    background-color: white;
+    border-radius: 10px;
+    min-height: 50px;
+    text-wrap: wrap;
+    color: black;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+
+.create-chat a{
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.create-chat{
+    display: flex;
+    background-color: #EEE;
+    border-radius: 20px;
+    color: black;
+    padding: 20%;
+    align-items: center;
+    width: auto;
+    font-size: 20px;
+}
+
+.create-chat button{
+    background-color: green;
+}
+
+.messages{
+    width: auto;
+    max-height: 90%;
+    padding: 0px 10%;
+    overflow: scroll;
+}
+.message-containter{
+    width: auto;
+    display: flex;
+}
+.message{
+    display: block;
+    padding: 20px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px 1px black;
+    border-radius: 20px;
+    margin: 20px;
+    overflow-wrap: break-word;
+    background-color: white;
+    text-align: left;
+    width: 40%;
+}

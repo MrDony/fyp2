@@ -1,0 +1,32 @@
+<app-nav-bar></app-nav-bar>
+<section class="page">
+    <section class="chat-body">
+        <div class="create-chat" *ngIf="chat_id==null">
+            <p >
+                Chat session has not been created yet.
+                You can go back to the home page to go through your history and chose
+                a previous session or you can <a (click)="createChatSession()">create a chat session</a>
+            </p>
+        </div>
+
+        <div class="messages" >
+            <div class="message-containter" #messageContainer *ngFor="let message of messages" [ngStyle]="{'justify-content':message.by == 'bot'?'left':'right'}" >
+                <div class="message" [ngStyle]="{
+                    'background-color': message.by == 'bot' ? 'var(--primary-color)' : 'white',
+                    'color':message.by == 'bot' ? 'white':'black'
+                    }">
+                    <h3>{{message.by}}</h3>
+                    <p *ngFor="let line of message.text">{{line}}</p>
+                </div>
+            </div> 
+            
+        </div>
+
+
+        <div class="prompt-input-container">
+            <input [(ngModel)]="prompt" class="chat-input-field" type="text" placeholder="Ask..." [readOnly]="chat_id==null">
+            <i class="material-icons" (click)="resolvePrompt()">send</i>
+        </div>
+        
+    </section>
+</section>

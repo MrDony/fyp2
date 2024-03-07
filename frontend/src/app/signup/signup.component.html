@@ -1,0 +1,36 @@
+<div class="page-body">
+  <div class="middle-box">
+    <div class="col login-credentials-form">
+      <div class="form-body">
+        <p class="title">Sign Up</p>
+        <p class="sub-title">Sign up now and use the LegalBot V1.0 for free!</p>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <div class="input-field">
+            <p class="input-field-label" for="username">Username:</p>
+            <input type="text" id="username" formControlName="username" class="form-control" required />
+          </div>
+          <div class="input-field">
+            <p class="input-field-label" for="password">Password:</p>
+            <input type="password" id="password" formControlName="password" class="form-control" required />
+          </div>
+          <div class="input-field">
+            <p class="input-field-label" for="username">Re-enter Password:</p>
+            <input type="password" id="password2" formControlName="password2" class="form-control" required />
+          </div>
+          <div class="input-field">
+            <p class="input-field-label" for="username">Email:</p>
+            <input type="text" id="email" formControlName="email" class="form-control" required />
+          </div>
+
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+        <p style="margin: 20px 0px;">Already have an account? <a style="color: azure;" routerLink="/login">Login</a> now!</p>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

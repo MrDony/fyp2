@@ -1,0 +1,16 @@
+.title{
+    width: auto;
+    padding: 5px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.notification{
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    padding: 20px 40px;
+    border-radius: 30px;
+    color: white;
+    z-index: 2;
+}

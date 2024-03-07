@@ -1,0 +1,33 @@
+.page-body{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.middle-box{
+    display: flex;
+    background-color: var(--primary-color);
+    width: 75%;
+    height: 75%;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 0px 10px 1px var(--primary-color-dark);
+    overflow: hidden;
+    border-radius: 50px;
+}
+.login-credentials-form{
+    text-align: center; /* Horizontal centering */
+    display: flex; /* Vertical centering */
+    align-items: center; /* Vertical centering */
+    width: 50%;
+    height: 100%;
+    text-align: -webkit-center;
+}
+.login-credentials-form p{
+    color: white;
+}
+.form-body{
+    width: 100%;
+    color: white;
+}
