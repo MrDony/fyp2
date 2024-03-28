@@ -63,12 +63,12 @@ def __testing_prompt_from_file(prompt_text,context):
     return "response to prompt"
 # Function to get response from API
 def get_response_from_api(question,context):
-    api_url = "https://2a80-34-91-60-225.ngrok-free.app"
+    api_url = "https://7ab9-34-126-174-195.ngrok-free.app"
 
     print("getting resp")
     body = {
         "question": question,
-        "context": context
+        #"context": context
     }
     headers = {
         "Content-Type": "application/json"
