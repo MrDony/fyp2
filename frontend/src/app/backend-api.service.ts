@@ -16,7 +16,7 @@ export class BackendApiService {
 
   private createUserUrl = 'api/users';
 
-  private getChatsUrl = 'api/get-chats';
+  private getChatsUrl = 'api/chat';
 
   private getPromptUrl = 'api/prompts';
 
@@ -26,30 +26,43 @@ export class BackendApiService {
 
   private createPromptUrl = 'api/prompts'
 
-  private resolvePromptUrl = 'api/resolve-prompt'
+  private resolvePromptUrl = 'api/chat'
 
   constructor(private http: HttpClient) { }
 
 
   authenticateUser(username: string, password: string): Observable<{ result: boolean, user: any }> {
     const requestBody = { username, password };
-    return this.http.post<{ result: boolean, user: any }>(`${this.baseUrl}${this.authenticateUrl}`, requestBody);
+    console.log('authenticating user:', requestBody, ' at ', `${this.baseUrl}${this.authenticateUrl}`);
+    const resp = this.http.post<{ result: boolean, user: any }>(`${this.baseUrl}${this.authenticateUrl}`, requestBody);
+    console.log('resp:', resp)
+    return resp;
   }
 
   createUser(username: string, email: string, password: string): Observable<{ message: string, result: boolean }> {
     const requestBody = { username, email, password };
-    return this.http.post<{ message: string, result: boolean }>(`${this.baseUrl}${this.createUserUrl}`, requestBody);
+    console.log('creating user:', requestBody, `at ${this.baseUrl}${this.createUserUrl}`);
+    const resp = this.http.post<{ message: string, result: boolean }>(`${this.baseUrl}${this.createUserUrl}`, requestBody);
+    console.log('resp:', resp)
+    return resp;
   }
 
 
   // Function to get chats for a user
   getChats(username: string):Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}${this.getChatsUrl}?username=${username}`);
+    const headers = new HttpHeaders()
+    console.log('getting chats for:', username, `at ${this.baseUrl}${this.getChatsUrl}`, { headers });
+    const resp = this.http.get<any>(`${this.baseUrl}${this.getChatsUrl}?username=${username}`);
+    console.log('resp:', resp)
+    return resp;
   }
 
   getPrompt(username: string, promptId: number):Observable<any> {
     // Make a GET request to the get-prompt endpoint with the username and prompt_id as route parameters
-    return this.http.get<any>(`${this.baseUrl}${this.getPromptUrl}/${username}/${promptId}`);
+    console.log('getting prompt:', username, promptId, `at ${this.baseUrl}${this.getPromptUrl}`);
+    const resp = this.http.get<any>(`${this.baseUrl}${this.getPromptUrl}/${username}/${promptId}`);
+    console.log('resp:', resp)
+    return resp;
   }
 
   // Function to create a chat
@@ -58,13 +71,28 @@ export class BackendApiService {
     const body = {
       username: username
     };
-    return this.http.post<any>(`${this.baseUrl}${this.createChatUrl}`, body, { headers });
+    console.log('creating chat:', username, `at ${this.baseUrl}${this.createChatUrl}`);
+    const resp = this.http.post<any>(`${this.baseUrl}${this.createChatUrl}`, body, { headers });
+    console.log('resp:', resp)
+    return resp;
+  }
+
+  // Function to delete a chat
+  deleteChat(username: string, chatId: number):Observable<any> {
+    const headers = new HttpHeaders();
+    console.log('deleting chat:', username, chatId, `at ${this.baseUrl}${this.getChatUrl}/${chatId}?username=${username}`);
+    const resp = this.http.delete<any>(`${this.baseUrl}${this.getChatUrl}/${chatId}?username=${username}`, { headers });
+    console.log('resp:', resp)
+    return resp;
   }
 
   // Function to get chat prompts
   getChatPrompts(username: string, chatId: number) {
     const headers = new HttpHeaders();
-    return this.http.get<any>(`${this.baseUrl}${this.getChatUrl}?username=${username}&chat_id=${chatId}`, { headers });
+    console.log('getting chat prompts:', username, chatId, `at ${this.baseUrl}${this.getChatUrl}/${chatId}?username=${username}&chat_id=${chatId}`);
+    const resp = this.http.get<any>(`${this.baseUrl}${this.getChatUrl}/${chatId}?username=${username}&chat_id=${chatId}`, { headers });
+    console.log('resp:', resp)
+    return resp;
   }
 
   // Function to create a prompt
@@ -76,18 +104,25 @@ export class BackendApiService {
       prompt_text: promptText,
       previous_prompt_id: previousPromptId
     };
-    return this.http.post<any>(`${this.baseUrl}${this.createPromptUrl}`, body, { headers });
+    console.log('creating prompt:', username, promptText, previousPromptId, `at ${this.baseUrl}${this.createPromptUrl}`);
+    const resp = this.http.post<any>(`${this.baseUrl}${this.createPromptUrl}`, body, { headers });
+    console.log('resp:', resp)
+    return resp;
   }
 
 
-  resolvePrompt(prompt: string, username:string, chatId: number):Observable<{response:any, prompt:any, result:boolean}> {
+  resolvePrompt(prompt: string, username:string, chatId: number, context: string):Observable<{response:any, prompt:any, result:boolean}> {
     const headers = new HttpHeaders();
     const body = {
-      prompt: prompt,
+      prompt_text: prompt,
       username:username,
-      chat_id: chatId
+      chat_id: chatId,
+      context: context
     };
-    return this.http.post<{response:any, prompt:any, result:boolean}>(`${this.baseUrl}${this.resolvePromptUrl}`, body, { headers });
+    console.log('add prompt and response:', prompt, username, chatId, `at ${this.baseUrl}${this.resolvePromptUrl}/${chatId}`);
+    const resp = this.http.post<{response:any, prompt:any, result:boolean}>(`${this.baseUrl}${this.resolvePromptUrl}/${chatId}`, body, { headers });
+    console.log('resp:', resp)
+    return resp;
   }
 
 }

@@ -2,6 +2,7 @@
 
 from flask import Blueprint, request, jsonify
 import mysql.connector
+import requests
 
 # Create a Blueprint for the users-related endpoints
 chat_bp = Blueprint('chat', __name__)
@@ -223,6 +224,21 @@ def get_response_from_file(question):
                 return item['answer']
         return "Sorry, I couldn't find an answer to that question."
     
+# Function to get response from API
+def get_response_from_api(question):
+    api_url = "https://e0e6-35-201-250-101.ngrok-free.app/"
+
+    print("getting resp")
+    body = {
+        "question": question
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    response = requests.get(api_url, json=body, headers=headers)
+    print("response got", response.json())
+    return response.json()['answer']  # Assuming the API returns JSON data
+    
 @chat_bp.route('/resolve-prompt', methods=['POST'])
 def resolve_prompt():
     try:
@@ -236,7 +252,7 @@ def resolve_prompt():
         import random
         import string
         print(prompt)
-        response_got = get_response_from_file(prompt)
+        response_got = get_response_from_api(prompt)
         # response_got = response_got.replace("\n","<br>")
 
         # Retrieve the final_prompt_id from the chats table based on chat_id and username

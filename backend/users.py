@@ -111,12 +111,3 @@ def delete_user(username):
         return jsonify(message="User deleted successfully"), 200
     except Exception as e:
         return jsonify(error=str(e)), 500
-"""
-<div class="input-field">
-                    <p class="input-field-label">
-                        Email
-                    </p>
-                    <input value="email" type="email">
-                </div>
-
-"""

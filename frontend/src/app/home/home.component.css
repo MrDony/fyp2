@@ -1,11 +1,17 @@
 .chats{
-    margin: 20px;
-    padding: 20px;
+    margin: 0px 0px;
+    padding: 0px 0px;
     width: auto;
     display: block;
-    border: 1px solid #777;
     border-radius: 20px;
     text-align: center;
+    overflow: hidden;
+}
+.chats-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
 }
 
 .chats table{
@@ -20,7 +26,6 @@ th{
     font-size: 30px;
 }
 tr{
-    background-color: #DDD;
     transition-duration: 0.1ms;
     border-radius: 20px;
     overflow: hidden;
@@ -31,8 +36,8 @@ tr:nth-last-of-type(odd){
 }
 
 tr:hover{
-    background-color: var(--primary-color-light);
-    color: white;
+    background-color: #0058dd22;
+    color: black;
     cursor: pointer;
 }
 
@@ -55,4 +60,43 @@ tr:hover{
 }
 .ta-l{
     text-align: left;
+}
+.delete{
+    color: #ff3b3b;
+    align-items: center;
+    text-align: center;
+}
+
+.table-container {
+    height: 60vh; /* 50% of viewport height */
+    overflow-y: auto; /* Enable vertical scrollbar if content exceeds container height */
+}
+
+table {
+    width: 100%;
+    table-layout: fixed; /* Prevent table from changing layout */
+    border-collapse: collapse;
+
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap; /* Prevent wrapping of content */
+    overflow: hidden; /* Hide overflow content */
+    text-overflow: ellipsis; /* Show ellipsis for overflow content */
+}
+.header{
+    transform: translateY(-1px);
+    background-color: var(--primary-color);
+    color: white;
+    cursor: default;
+    position: sticky;
+    top:0;
+}
+.header:hover{
+    background-color: var(--primary-color);
+    color: white;
+    cursor: default;
 }

@@ -10,6 +10,7 @@
         </div>
 
         <div class="messages" >
+            <p class="premessage" *ngIf="messages.length<=0">You haven't said anything yet.</p>
             <div class="message-containter" #messageContainer *ngFor="let message of messages" [ngStyle]="{'justify-content':message.by == 'bot'?'left':'right'}" >
                 <div class="message" [ngStyle]="{
                     'background-color': message.by == 'bot' ? 'var(--primary-color)' : 'white',
@@ -21,12 +22,10 @@
             </div> 
             
         </div>
-
-
         <div class="prompt-input-container">
-            <input [(ngModel)]="prompt" class="chat-input-field" type="text" placeholder="Ask..." [readOnly]="chat_id==null">
-            <i class="material-icons" (click)="resolvePrompt()">send</i>
+            <textarea rows="4" cols="50" [(ngModel)]="prompt" class="chat-input-field" type="text" placeholder="Ask..." [readOnly]="chat_id==null" [disabled]="waitingForResponse"></textarea>
+            <i class="material-icons" (click)="resolvePrompt()" [ngStyle]="{'background-color': waitingForResponse ? '#AAA':'var(--primary-color)'}">send</i>
         </div>
-        
     </section>
+    
 </section>

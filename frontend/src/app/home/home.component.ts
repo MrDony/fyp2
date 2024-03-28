@@ -31,13 +31,24 @@ export class HomeComponent implements OnInit {
     forkJoin([userChats$]).subscribe((
       [userChatsResponse]
     )=>{
-      console.log('user chats:',userChatsResponse.chats)
-      this.chatsList = userChatsResponse.chats
+      console.log('user chats=>:',userChatsResponse)
+      this.chatsList = userChatsResponse
     })
   }
 
   openChat(chat:any){
     
+  }
+
+  deleteChat(chat_id:any){
+    console.log('deleting chat_id:',chat_id)
+    const deleteChat$ = this.backendService.deleteChat(localStorage.getItem('username')!,chat_id);
+    forkJoin([deleteChat$]).subscribe((
+      [deleteChatResponse]
+    )=>{
+      console.log('delete chat response:',deleteChatResponse)
+      this.ngOnInit()
+    })
   }
 
 

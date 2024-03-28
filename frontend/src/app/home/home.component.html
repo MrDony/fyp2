@@ -1,28 +1,53 @@
 <app-nav-bar></app-nav-bar>
 <section class="page">
-    
+
     <h1>Home</h1>
     <h2>Welcome {{username_}}!</h2>
-    <p>Resume your journey with ease. What would you like to know today?</p>
+    <p style="border-bottom: 0.5px #00000072 solid ;">Resume your journey with ease. What would you like to know today?</p>
+
+    <section style="padding: 1% 10%;">
+        <h2 class="chats-title">
+            Previous Chats
+            <button class="create" *ngIf="chatsList.length!=0" routerLink="/chatbot"
+                [state]="{ chatData: { chatID: null, createNewChat: true } }">Create New Chat Session +</button>
+        </h2>
+        <section class="chats">
     
-    <section class="chats">
-        <p *ngIf="chatsList.length == 0">Seems like you have not started a chat yet. Click <a routerLink="/chatbot" [state]="{ chatData: { chatID: null, createNewChat: true } }">here</a> to start a chat now!</p>
-        <button class="create" *ngIf="chatsList.length!=0" routerLink="/chatbot" [state]="{ chatData: { chatID: null, createNewChat: true } }">Create New Chat Session</button>
-        <table>
-            <thead>
-                <th class="ta-l">Prompt</th>
-                <th class="">Date</th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let chat of chatsList" routerLink="/chatbot" [state]="{ chatData: { chatID: chat.chat_id, createNewChat: false } }" style="border-bottom: solid #888 1px;">
-                    <td class="prompt" *ngIf="chat.final_prompt_id==null">You haven't said anything yet</td>
-                    <td class="prompt" *ngIf="chat.final_prompt_id!=null">{{chat.prompt_text}}</td>
-                    <td class="date">{{chat.starting_date}}</td>
-                </tr>
-            </tbody>
-        </table>
+            <p *ngIf="chatsList.length == 0">Seems like you have not started a chat yet. Click <a routerLink="/chatbot"
+                    [state]="{ chatData: { chatID: null, createNewChat: true } }">here</a> to start a chat now!</p>
+    
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr class="header" style=" background-color: var(--primary-color-dark);">
+                            <th class="ta-l prompt">Prompt</th>
+                            <th class="date">Date</th>
+                            <th class="delete">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let chat of chatsList"
+                            style="border-bottom: solid #888 1px;">
+                            <td class="prompt" *ngIf="chat.first_prompt==null"
+                            routerLink="/chatbot"
+                            [state]="{ chatData: { chatID: chat.chat_id, createNewChat: false } }">You haven't said anything yet</td>
+                            <td class="prompt" *ngIf="chat.first_prompt!=null"
+                            routerLink="/chatbot"
+                            [state]="{ chatData: { chatID: chat.chat_id, createNewChat: false } }">{{chat.first_prompt}}</td>
+                            <td class="date"
+                            routerLink="/chatbot"
+                            [state]="{ chatData: { chatID: chat.chat_id, createNewChat: false } }">{{chat.starting_date}}</td>
+                            <td class="delete" (click)="deleteChat(chat.chat_id)"><mat-icon>delete</mat-icon></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+        </section>
     </section>
-    
-    
-    
+ 
+
+
+
 </section>

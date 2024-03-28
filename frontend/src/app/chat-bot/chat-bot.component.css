@@ -1,6 +1,6 @@
-
-.recent-chat{
-    position: relative; /* Ensure relative positioning for the parent element */
+.recent-chat {
+    position: relative;
+    /* Ensure relative positioning for the parent element */
     font-size: 14px;
     width: 10%;
     margin: 0px 5px;
@@ -12,57 +12,68 @@
     text-wrap: nowrap;
     cursor: pointer;
 }
-.recent-chat:hover{
+
+.recent-chat:hover {
     width: 12%;
 }
 
 .recent-chat::before {
-    content: ''; /* Add content to the pseudo-element (empty content) */
-    position: absolute; /* Position the pseudo-element absolutely within the parent */
+    content: '';
+    /* Add content to the pseudo-element (empty content) */
+    position: absolute;
+    /* Position the pseudo-element absolutely within the parent */
     top: 0;
-    right: 0; /* Place the pseudo-element on the right side */
-    width: 40px; /* Adjust the width of the shadow element as needed */
-    height: 100%; /* Make the shadow element cover the full height of the parent */
-    background: linear-gradient(to left, #e3e3e3aa, transparent); 
+    right: 0;
+    /* Place the pseudo-element on the right side */
+    width: 40px;
+    /* Adjust the width of the shadow element as needed */
+    height: 100%;
+    /* Make the shadow element cover the full height of the parent */
+    background: linear-gradient(to left, #e3e3e3aa, transparent);
     /* Use a linear gradient for the shadow effect (black to transparent) */
-    z-index: 1; /* Ensure the shadow element is above the text (increase if necessary) */
+    z-index: 1;
+    /* Ensure the shadow element is above the text (increase if necessary) */
 }
 
-.fa-angle-down{
+.fa-angle-down {
     cursor: pointer;
 }
-.fa-angle-down:hover{
+
+.fa-angle-down:hover {
     background-color: #FFFFFF33;
     padding: 5px;
 }
-.fa-angle-down:active{
+
+.fa-angle-down:active {
     background-color: #FFFFFFAA;
 }
 
-.right button{
+.right button {
     margin: 0px 5px;
 }
 
 
-.chat-body{
+.chat-body {
     display: block;
     position: relative;
     text-align: center;
     align-items: center;
-    align-content: center;
     height: -webkit-fill-available;
 }
 
 
-.prompt-input-container{
+.prompt-input-container {
     display: flex;
     justify-content: center;
     position: absolute;
     bottom: 0;
     width: -webkit-fill-available;
     align-items: center;
+    box-shadow: 0px -3px 20px 20px #EEE;
+    background-color: #EEE;
 }
-.prompt-input-container i{
+
+.prompt-input-container i {
     font-size: 40px;
     padding: 10px;
     border-radius: 10px;
@@ -73,7 +84,8 @@
     margin: 10px;
     border: 1px solid black;
 }
-.chat-input-field{
+
+.chat-input-field {
     width: 50%;
     background-color: white;
     border-radius: 10px;
@@ -85,14 +97,15 @@
 }
 
 
-.create-chat a{
+.create-chat a {
     background-color: var(--primary-color);
     color: white;
     padding: 2px;
     border-radius: 7px;
     cursor: pointer;
 }
-.create-chat{
+
+.create-chat {
     display: flex;
     background-color: #EEE;
     border-radius: 20px;
@@ -103,21 +116,23 @@
     font-size: 20px;
 }
 
-.create-chat button{
+.create-chat button {
     background-color: green;
 }
 
-.messages{
+.messages {
     width: auto;
-    max-height: 90%;
+    height: 88%;
     padding: 0px 10%;
     overflow: scroll;
 }
-.message-containter{
+
+.message-containter {
     width: auto;
     display: flex;
 }
-.message{
+
+.message {
     display: block;
     padding: 20px;
     border: 1px solid black;
@@ -128,4 +143,12 @@
     background-color: white;
     text-align: left;
     width: 40%;
+}
+
+.premessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
 }
