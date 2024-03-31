@@ -72,7 +72,7 @@ input:focus{
 }
 .input-field-label{
     font-size: 14px;
-    color: #EEE;
+    color: #FEFEFE;
 }
 
 .content{
@@ -109,7 +109,7 @@ h2{
 }
 
 .page{
-    background-color: #EEE;
+    background-color: #FEFEFE;
     height: -webkit-fill-available;
     padding: 20px;
     padding-top: 64px;

@@ -78,9 +78,13 @@ def authenticate_user():
                 "email": user[1],
                 "registration_date": user[3].strftime("%Y-%m-%d %H:%M:%S")
             }
-            return jsonify(result=True, user=user_data)
+            response = jsonify(result=True, user=user_data)
+            
         else:
-            return jsonify(result=False, message="User not found or invalid credentials")
+            response = jsonify(result=False, message="User not found or invalid credentials")
+        response.headers['Access-Control-Allow-Origin'] = "*"
+        response.headers['Access-Control-Allow-Methods'] = 'GET,POST,OPTIONS,DELETE,PUT'
+        return response, 200
     except Exception as e:
         return jsonify(error=str(e)), 500
 

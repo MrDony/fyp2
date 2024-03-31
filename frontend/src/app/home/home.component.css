@@ -3,7 +3,7 @@
     padding: 0px 0px;
     width: auto;
     display: block;
-    border-radius: 20px;
+    border-radius: 5px;
     text-align: center;
     overflow: hidden;
 }
@@ -11,16 +11,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
+    padding: 10px 0px;
 }
 
 .chats table{
     width: -webkit-fill-available;
 }
 
-table td{
-    padding: 20px;
-}
 th{
     padding: 20px;
     font-size: 30px;
@@ -55,9 +52,7 @@ tr:hover{
     text-align: left;
     overflow: hidden;
 }
-.date{
-    width: 20%;
-}
+
 .ta-l{
     text-align: left;
 }
@@ -76,7 +71,6 @@ table {
     width: 100%;
     table-layout: fixed; /* Prevent table from changing layout */
     border-collapse: collapse;
-
 }
 
 th, td {
@@ -86,6 +80,7 @@ th, td {
     white-space: nowrap; /* Prevent wrapping of content */
     overflow: hidden; /* Hide overflow content */
     text-overflow: ellipsis; /* Show ellipsis for overflow content */
+    padding: 10px 20px;
 }
 .header{
     transform: translateY(-1px);
@@ -99,4 +94,19 @@ th, td {
     background-color: var(--primary-color);
     color: white;
     cursor: default;
+}
+
+.date{
+    width: 20%;
+    text-align: center;
+    padding: 10px 50px;
+}
+.date-val{
+    width: auto;
+    font-size: 12px;
+    color: #EEE;
+    background-color: #888;
+    border-radius: 20px;
+    padding: 5px;
+    text-align: center;
 }

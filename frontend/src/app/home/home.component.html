@@ -22,7 +22,7 @@
                     <thead>
                         <tr class="header" style=" background-color: var(--primary-color-dark);">
                             <th class="ta-l prompt">Prompt</th>
-                            <th class="date">Date</th>
+                            <th class="date">Date Created</th>
                             <th class="delete">Delete</th>
                         </tr>
                     </thead>
@@ -37,7 +37,8 @@
                             [state]="{ chatData: { chatID: chat.chat_id, createNewChat: false } }">{{chat.first_prompt}}</td>
                             <td class="date"
                             routerLink="/chatbot"
-                            [state]="{ chatData: { chatID: chat.chat_id, createNewChat: false } }">{{chat.starting_date}}</td>
+                            [state]="{ chatData: { chatID: chat.chat_id, createNewChat: false } }"
+                            ><p class="date-val">{{chat.starting_date}}</p></td>
                             <td class="delete" (click)="deleteChat(chat.chat_id)"><mat-icon>delete</mat-icon></td>
                         </tr>
                     </tbody>

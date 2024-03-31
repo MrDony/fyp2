@@ -10,6 +10,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ResponseRatingComponent } from './response-rating/response-rating.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
     ChatBotComponent,
     SignupComponent,
     HomeComponent,
-    NavBarComponent
+    NavBarComponent,
+    ResponseRatingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,8 @@
+<div class="rating">
+    <p>Rating</p>
+    <span class="star" [className]="previousRating>0?'star-full':'star'" (click)="rateResponse(1)" [class.active]="previousRating >= 1">&#9733;</span>
+    <span class="star" [className]="previousRating>1?'star-full':'star'" (click)="rateResponse(2)" [class.active]="previousRating >= 2">&#9733;</span>
+    <span class="star" [className]="previousRating>2?'star-full':'star'" (click)="rateResponse(3)" [class.active]="previousRating >= 3">&#9733;</span>
+    <span class="star" [className]="previousRating>3?'star-full':'star'" (click)="rateResponse(4)" [class.active]="previousRating >= 4">&#9733;</span>
+    <span class="star" [className]="previousRating>4?'star-full':'star'" (click)="rateResponse(5)" [class.active]="previousRating >= 5">&#9733;</span>
+</div>

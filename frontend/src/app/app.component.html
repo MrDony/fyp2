@@ -1,7 +1,7 @@
 <!--<div class="title">
     The application is currently in beta and in debugging mode! <a routerLinkActive="" routerLink="login">Click Here</a>
 </div>-->
-<div class="notification" [ngStyle]="{'background-color': getNotificationType() ? 'green' : 'red'}" *ngIf="getNotificationShowing()">
+<div class="notification" [ngStyle]="{'border': getNotificationType() ? '3px solid green' : '3px solid red'}" *ngIf="getNotificationShowing()">
     <h3>{{getNotificationTitle()}}</h3>
     <p>{{getNotificationContent()}}</p>
 </div>

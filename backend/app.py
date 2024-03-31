@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-cors = CORS(app, allow_headers=["*"])
+cors = CORS(app,origins='*')
 
 # Register the users_bp Blueprint under a specific URL prefix
 app.register_blueprint(users_bp, url_prefix='/api')

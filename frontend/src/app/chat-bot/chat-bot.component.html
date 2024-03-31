@@ -2,30 +2,48 @@
 <section class="page">
     <section class="chat-body">
         <div class="create-chat" *ngIf="chat_id==null">
-            <p >
+            <p>
                 Chat session has not been created yet.
                 You can go back to the home page to go through your history and chose
                 a previous session or you can <a (click)="createChatSession()">create a chat session</a>
             </p>
         </div>
 
-        <div class="messages" >
+        <div class="messages">
             <p class="premessage" *ngIf="messages.length<=0">You haven't said anything yet.</p>
-            <div class="message-containter" #messageContainer *ngFor="let message of messages" [ngStyle]="{'justify-content':message.by == 'bot'?'left':'right'}" >
+            <div class="sending-message" *ngIf="waitingForResponse">
+                <h3 class="message-title">{{sendingMessage.by}}</h3>
+                <p class="datetime">sending...</p>
+                <p *ngFor="let line of sendingMessage.text">{{line}}</p>
+            </div>
+            <div class="message-containter" #messageContainer *ngFor="let message of messages"
+                [ngStyle]="{'justify-content':message.by == 'Bot'?'left':'right'}">
                 <div class="message" [ngStyle]="{
-                    'background-color': message.by == 'bot' ? 'var(--primary-color)' : 'white',
-                    'color':message.by == 'bot' ? 'white':'black'
+                    'background-color': message.by == 'Bot' ? 'var(--primary-color)' : 'white',
+                    'color':message.by == 'Bot' ? 'white':'black'
                     }">
-                    <h3>{{message.by}}</h3>
+                    <div class="row">
+                        <img src="{{message.by=='Bot'? 'assets/bot.svg':'assets/user.svg'}}" class="pfp">
+                        <h3 class="message-title">{{message.by}}</h3>
+                    </div>
+
+                    <p class="datetime" [ngStyle]="{
+                            'color':message.by=='Bot'? '#FFF9':'#0007',
+                            'border-bottom':message.by=='Bot'? '1px solid #FFF9':'1px solid #0007'
+                        }">{{message.datetime}}</p>
                     <p *ngFor="let line of message.text">{{line}}</p>
+                    <app-response-rating [responseId]="message.response_id" [previousRating]="message.rating" (ratingSelected)="onRatingSelected($event)" *ngIf="message.by == 'Bot'"></app-response-rating>
+
                 </div>
-            </div> 
-            
+            </div>
+
         </div>
         <div class="prompt-input-container">
-            <textarea rows="4" cols="50" [(ngModel)]="prompt" class="chat-input-field" type="text" placeholder="Ask..." [readOnly]="chat_id==null" [disabled]="waitingForResponse"></textarea>
-            <i class="material-icons" (click)="resolvePrompt()" [ngStyle]="{'background-color': waitingForResponse ? '#AAA':'var(--primary-color)'}">send</i>
+            <textarea rows="4" cols="50" [(ngModel)]="prompt" class="chat-input-field" type="text" placeholder="Ask..."
+                [readOnly]="chat_id==null" [disabled]="waitingForResponse"></textarea>
+            <i class="material-icons" (click)="resolvePrompt()"
+                [ngStyle]="{'background-color': waitingForResponse ? '#AAA':'var(--primary-color)'}">send</i>
         </div>
     </section>
-    
+
 </section>

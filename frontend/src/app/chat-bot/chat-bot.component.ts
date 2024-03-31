@@ -22,6 +22,7 @@ export class ChatBotComponent implements OnInit, AfterViewInit {
 
   previous_prompt_id: any = null;
   waitingForResponse: boolean = false;
+  sendingMessage:any = '';
 
   constructor(private route: ActivatedRoute, private dataService: BackendApiService) {
   }
@@ -48,14 +49,19 @@ export class ChatBotComponent implements OnInit, AfterViewInit {
             for (let prompt of getChatResponse) {
               //console.log('message:',prompt)
               this.messages.push({
-                'by': 'user',
-                'text': prompt.prompt_text
+                'by': 'User',
+                'text': prompt.prompt_text,
+                'datetime': prompt.prompt_date,
               })
               this.messages.push({
-                'by': 'bot',
-                'text': prompt.response_text
+                'by': 'Bot',
+                'text': prompt.response_text,
+                'datetime': prompt.response_date,
+                'response_id':prompt.response_id,
+                'rating': prompt.response_rating
               })
             }
+            console.log('messages:', this.messages)
           })
         }
       }
@@ -95,9 +101,9 @@ export class ChatBotComponent implements OnInit, AfterViewInit {
     let result: string[] = [];
 
     for (const message of messages) {
-      if (message.by === 'user') {
+      if (message.by === 'User') {
         result.push(`User: ${message.text.join(' ')}`);
-      } else if (message.by === 'bot') {
+      } else if (message.by === 'Bot') {
         result.push(`Agent: ${message.text.join(' ')}`);
       }
       console.log(result)
@@ -116,16 +122,20 @@ export class ChatBotComponent implements OnInit, AfterViewInit {
       console.log('previous_two_messages:', context)
       const promptResolve$ = await this.dataService.resolvePrompt(this.prompt, localStorage.getItem('username')!, this.chat_id, context);
 
-      this.messages.push({ 'by': 'user', 'text': this.prompt.split('\n') })
+      //
+      this.sendingMessage = { 'by': 'User', 'text': this.prompt.split('\n'), 'datetime': new Date() }
       this.scrollToBottom()
       forkJoin([promptResolve$]).subscribe((
         [promptResolveResponse]
       ) => {
         console.log('resolved prompt:', promptResolveResponse)
+        const prompt = promptResolveResponse.prompt;
+        const response = promptResolveResponse.response;
+        this.messages.push({ 'by': 'User', 'text': prompt.prompt_text.split('\n'), 'datetime': prompt.prompt_date })
         // promptResolveResponse.response.response_text = promptResolveResponse.response.response_text.replace(/\n/g, '<br>');
 
         if (promptResolveResponse.result) {
-          this.messages.push({ 'by': 'bot', 'text': promptResolveResponse.response })
+          this.messages.push({ 'by': 'Bot', 'text': response.response_text.split('\n'), 'datetime': response.response_date, 'rating': response.rating, 'response_id':response.response_id })
           this.scrollToBottom()
           this.prompt = ''
           this.waitingForResponse = false;
@@ -134,13 +144,18 @@ export class ChatBotComponent implements OnInit, AfterViewInit {
 
       }).add(() => {
         if (this.waitingForResponse) {
-          this.messages.push({ 'by': 'bot', 'text': ['Some error occured'] })
+          this.messages.push({ 'by': 'Bot', 'text': ['Some error occured'], 'datetime':'error', 'rating':0 })
           this.scrollToBottom()
           this.prompt = ''
           this.waitingForResponse = false;
         }
       })
     }
+  }
+
+  onRatingSelected(rating: number): void {
+    console.log('Rating selected:', rating);
+    // You can perform further actions here, such as updating the rating in the database
   }
 
 }
